@@ -1,0 +1,22 @@
+<div class="card">
+    <!-- <img 
+    *ngIf="cas"
+    src="{{ cas.image }}" 
+    alt="{{ name }}" 
+    class="card-img-top"
+    > -->
+  <div class="card-body">
+    <div class="card-header">
+      <h3>
+          {{cas? cas.name : "Odaberi cas za detalje..."}}
+      </h3>
+    </div>
+    <div class="card-text" [innerHtml]="cas ? cas.opis: ''">
+    </div>
+    <button class="btn btn-primary float-right"
+      *ngIf="cas"
+      routerLink="/zakazi"
+    >Zakazi!</button>
+  </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <h3
+      style="color: grey"
+    >aoeu{{dummy}}</h3>
+    <select name="" id=""
+      [(ngModel)]="dummy"
+      (change)="helloChange()"
+      >
+      <option
+        *ngFor="let cas of casovi"
+        [ngValue]="cas.name"
+        >
+        {{cas.name}}
+      </option>f
+    </select>
+
+    <select name="" id="">
+      <option value=""
+        *ngFor="let prof of [1, 2]"
+        value="{{prof}}"
+        >
+        {{prof}}
+      </option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand"
+    routerLink="/"
+    >Privatni_casovi</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link"
+        routerLink="/zakazi"
+        >Zakazi</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a href="#" class="nav-link">
+        <button class="btn btn-primary">
+          {{ isLoggedIn ? 'Logout' : 'Login' }}
+        </button>
+      </a>
+    </li>
+  </ul>
+</nav>
