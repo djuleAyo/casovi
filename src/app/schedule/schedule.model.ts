@@ -35,6 +35,18 @@ export class Schedule {
         }
         return ret_val;
     }
+    static union(dates1: Array<Date>, dates2: Array<Date>): Array<Date> {
+        return [];
+    }
+    static diff(dates1: Array<Date>, dates2: Array<Date>): Array<Date> {
+
+        return [];
+    }
+    private static splitByDate(dates: Array<Date>): Array<Array<Date>> {
+
+        return [[]];
+    }
+
 
     constructor(
         private workingHours = '0-30 * * * *',
