@@ -2,6 +2,9 @@ import { Appointment } from '../appointment/appointment.model';
 
 import * as CronParser from 'cron-parser';
 
+function sameDate(d1: Date, d2: Date): Boolean {
+    return d1.getTime() === d2.getTime();
+}
 
 export class Schedule {
 
@@ -35,14 +38,37 @@ export class Schedule {
         }
         return ret_val;
     }
+    /**
+     * The 1st array is dest of the operation.
+     */
     static union(dates1: Array<Date>, dates2: Array<Date>): Array<Date> {
-        return [];
+        for (const date of dates2) {
+            if (dates1.filter((elem) => sameDate(elem, date)).length === 0) {
+                dates1.push(date);
+            }
+        }
+        dates1.sort();
+        return dates1;
     }
+    /**
+     * The 1st array is dest of the operation.
+     */
     static diff(dates1: Array<Date>, dates2: Array<Date>): Array<Date> {
-
-        return [];
+        for (const date of dates2) {
+            // TODO - change to filter not index - index doesn't catch date equality
+            const index = dates1.indexOf(date);
+            if ( index !== -1) {
+                dates1.splice(index, 1);
+            }
+        }
+        dates1.sort();
+        return dates1;
     }
-    private static splitByDate(dates: Array<Date>): Array<Array<Date>> {
+    /**
+     * The function preforms grouping on date basis.
+     * Resulting groups are stored in an asc sorted array
+     */
+    static splitByDate(dates: Array<Date>): Array<Array<Date>> {
 
         return [[]];
     }
@@ -56,29 +82,11 @@ export class Schedule {
         private scheduleTimeUnit?
     ) {}
 
-
-    getSchedule(start?: Date, end?: Date): Array<Schedule.TimeInterval> {
-        // compute working dates
-        const workingDates = Schedule.toDateArray(this.workingHours, start, end);
-
-        this.find(workingDates, '0-30 0 * * *',
-            (found) => {found['state'] = 'EXCLUDED_INTERVAL'; });
-
-        return workingDates;
-    }
-    find(searchIn: Array<Date>, searchFor: string, cb: (found?, index?) => any) {
-        const candidates = Schedule.toDateArray(searchFor);
-
-        for (const x of searchIn) {
-            for (const y of candidates) {
-                if (x.getTime() === y.getTime()) {
-                    cb(x);
-                }
-            }
-        }
-    }
-
     cronTest() {
+    }
+
+    queryDate() {
+
     }
 }
 
